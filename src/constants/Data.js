@@ -1,6 +1,6 @@
 import uuid from "react-uuid";
 
-const data = [
+const info = [
   {
     id: uuid(),
     heading: "Todo",
@@ -37,4 +37,4 @@ const data = [
   },
 ];
 
-export default data;
+export default info;
