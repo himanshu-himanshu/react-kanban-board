@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.draggedDiv {
+    @apply py-8 px-4 flex flex-col items-center justify-center my-4 hover:cursor-pointer h-full shadow-lg
+}
+
+.column {
+    @apply h-full w-full mx-4 flex flex-col justify-center items-center shadow-xl
+}

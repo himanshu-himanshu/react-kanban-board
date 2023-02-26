@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import uuid from "react-uuid";
 
 import info from "../constants/Data";
 
@@ -8,19 +7,17 @@ const Board = () => {
 
   const [dragStartedColId, setDragStartedColId] = useState();
   const [dragEndedColId, setDragEndedColId] = useState();
-  //const [draggedTaskId, setDraggedTaskId] = useState();
   const [draggedTaskIndex, setDraggedTaskIndex] = useState();
+  const [draggedTaskId, setDraggedTaskId] = useState();
 
   const dragItem = useRef();
   const dragOverItem = useRef();
 
   const dragStart = (e, position, id, taskId) => {
     dragItem.current = position;
-    //setDraggedTaskId(taskId);
     setDragStartedColId(id);
     setDraggedTaskIndex(position);
-    console.log(position);
-    console.log(draggedTaskIndex);
+    setDraggedTaskId(taskId);
   };
 
   const dragEnter = (e, position, id) => {
@@ -31,7 +28,8 @@ const Board = () => {
 
   const drop = (e) => {
     if (dragStartedColId == dragEndedColId) {
-      console.log("Same Box");
+      setDraggedTaskId();
+      setDragEndedColId();
       return;
     } else {
       const dragStartedColIndex = data.findIndex(
@@ -45,11 +43,7 @@ const Board = () => {
       const sourceContent = [...sourceCol.content];
       const desContent = [...destCol.content];
 
-      console.log(sourceContent);
-
       const [removedItem] = sourceContent.splice(draggedTaskIndex, 1);
-
-      console.log(removedItem);
 
       desContent.splice(-1, 0, removedItem);
 
@@ -58,6 +52,8 @@ const Board = () => {
       data[dragStartedColIndex].content = sourceContent;
 
       setData([...data]);
+      setDraggedTaskId();
+      setDragEndedColId();
     }
   };
 
@@ -68,7 +64,11 @@ const Board = () => {
     >
       {data.map((item, index) => (
         <div
-          className="h-full w-full mx-4 flex flex-col justify-center items-center  bg-[#635985] shadow-xl"
+          className={
+            dragEndedColId == item.id
+              ? "column bg-[#312a4b]"
+              : "column bg-[#635985]"
+          }
           key={item.id}
           onDragEnter={(e) => dragEnter(e, index, item.id)}
         >
@@ -83,7 +83,11 @@ const Board = () => {
                     draggable
                     onDragStart={(e) => dragStart(e, index, item.id, task.id)}
                     key={task.id}
-                    className="py-8 px-4 bg-gray-100 flex flex-col items-center justify-center my-4 hover:cursor-pointer h-full shadow-lg"
+                    className={
+                      draggedTaskId == task.id
+                        ? "draggedDiv bg-pink-200"
+                        : " bg-gray-100 draggedDiv"
+                    }
                   >
                     {task.task && (
                       <h1 className="text-xl text-gray-900">{task.task}</h1>
