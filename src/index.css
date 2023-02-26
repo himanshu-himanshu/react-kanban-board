@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .draggedDiv {
-    @apply py-8 px-4 flex flex-col items-center justify-center my-4 hover:cursor-pointer h-full shadow-lg
+    @apply py-8 px-4 flex flex-col items-center justify-center my-4 hover:cursor-pointer h-full shadow-lg duration-200
 }
 
 .column {
-    @apply h-full w-full mx-4 flex flex-col justify-center items-center shadow-xl
+    @apply h-full w-full mx-4 flex flex-col justify-center items-center shadow-xl duration-200
 }

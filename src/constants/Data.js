@@ -7,11 +7,11 @@ const info = [
     content: [
       {
         id: uuid(),
-        task: "Create Kanban",
+        task: "Learn Something",
       },
       {
         id: uuid(),
-        task: "Implement Redux",
+        task: "Be Productive",
       },
     ],
   },
@@ -21,7 +21,7 @@ const info = [
     content: [
       {
         id: uuid(),
-        task: "Learn React",
+        task: "Get Selected",
       },
     ],
   },
@@ -31,7 +31,11 @@ const info = [
     content: [
       {
         id: uuid(),
-        task: "Be Happy",
+        task: "Create Kanban",
+      },
+      {
+        id: uuid(),
+        task: "Use Core React",
       },
     ],
   },
