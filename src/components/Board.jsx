@@ -27,7 +27,7 @@ const Board = () => {
   };
 
   const drop = (e) => {
-    if (dragStartedColId == dragEndedColId) {
+    if (dragStartedColId === dragEndedColId) {
       setDraggedTaskId();
       setDragEndedColId();
       return;
@@ -65,7 +65,7 @@ const Board = () => {
       {data.map((item, index) => (
         <div
           className={
-            dragEndedColId == item.id
+            dragEndedColId === item.id
               ? "column bg-[#312a4b]"
               : "column bg-[#635985]"
           }
@@ -84,7 +84,7 @@ const Board = () => {
                     onDragStart={(e) => dragStart(e, index, item.id, task.id)}
                     key={task.id}
                     className={
-                      draggedTaskId == task.id
+                      draggedTaskId === task.id
                         ? "draggedDiv bg-pink-200"
                         : " bg-gray-100 draggedDiv"
                     }
